@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{93D57D64-895F-4BBF-9F8B-C780A8099D35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Domain", "src\Spotify.Domain\Spotify.Domain.csproj", "{55EDA8E1-10BE-42FF-9168-52CBA7C13E86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Domain.Api", "src\Spotify.Domain.Api\Spotify.Domain.Api.csproj", "{40DA9706-A9E0-4AE6-A1F8-246A2CD27CAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Infra", "src\Spotify.Infra\Spotify.Infra.csproj", "{9A153192-4B1F-4604-8B82-CA856A79594C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Infra.ExternalServices.Spotify", "src\Spotify.Infra.ExternalServices.Spotify\Spotify.Infra.ExternalServices.Spotify.csproj", "{432B06F1-D038-447F-ABA4-2928E525D7D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Infra.CrossCutting", "src\Spotify.Infra.CrossCutting\Spotify.Infra.CrossCutting.csproj", "{E1F47358-90E1-4815-9B1C-6BA3DBBBB1B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Infra.CrossCutting.Ioc", "src\Spotify.Infra.CrossCutting.Ioc\Spotify.Infra.CrossCutting.Ioc.csproj", "{8AC6DDD4-6B69-435C-B86B-8713DEE0CBE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55EDA8E1-10BE-42FF-9168-52CBA7C13E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55EDA8E1-10BE-42FF-9168-52CBA7C13E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55EDA8E1-10BE-42FF-9168-52CBA7C13E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55EDA8E1-10BE-42FF-9168-52CBA7C13E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40DA9706-A9E0-4AE6-A1F8-246A2CD27CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40DA9706-A9E0-4AE6-A1F8-246A2CD27CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40DA9706-A9E0-4AE6-A1F8-246A2CD27CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40DA9706-A9E0-4AE6-A1F8-246A2CD27CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A153192-4B1F-4604-8B82-CA856A79594C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A153192-4B1F-4604-8B82-CA856A79594C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A153192-4B1F-4604-8B82-CA856A79594C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A153192-4B1F-4604-8B82-CA856A79594C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432B06F1-D038-447F-ABA4-2928E525D7D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432B06F1-D038-447F-ABA4-2928E525D7D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432B06F1-D038-447F-ABA4-2928E525D7D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432B06F1-D038-447F-ABA4-2928E525D7D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F47358-90E1-4815-9B1C-6BA3DBBBB1B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F47358-90E1-4815-9B1C-6BA3DBBBB1B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F47358-90E1-4815-9B1C-6BA3DBBBB1B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F47358-90E1-4815-9B1C-6BA3DBBBB1B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AC6DDD4-6B69-435C-B86B-8713DEE0CBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC6DDD4-6B69-435C-B86B-8713DEE0CBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC6DDD4-6B69-435C-B86B-8713DEE0CBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC6DDD4-6B69-435C-B86B-8713DEE0CBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55EDA8E1-10BE-42FF-9168-52CBA7C13E86} = {93D57D64-895F-4BBF-9F8B-C780A8099D35}
+		{40DA9706-A9E0-4AE6-A1F8-246A2CD27CAF} = {93D57D64-895F-4BBF-9F8B-C780A8099D35}
+		{9A153192-4B1F-4604-8B82-CA856A79594C} = {93D57D64-895F-4BBF-9F8B-C780A8099D35}
+		{432B06F1-D038-447F-ABA4-2928E525D7D6} = {93D57D64-895F-4BBF-9F8B-C780A8099D35}
+		{E1F47358-90E1-4815-9B1C-6BA3DBBBB1B0} = {93D57D64-895F-4BBF-9F8B-C780A8099D35}
+		{8AC6DDD4-6B69-435C-B86B-8713DEE0CBE1} = {93D57D64-895F-4BBF-9F8B-C780A8099D35}
+	EndGlobalSection
+EndGlobal
