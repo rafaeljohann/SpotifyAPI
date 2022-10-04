@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Spotify.Infra.CrossCutting\Spotify.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\Spotify.Infra.CrossCutting.Ioc\Spotify.Infra.CrossCutting.Ioc.csproj" />
+  </ItemGroup>
+
 </Project>
