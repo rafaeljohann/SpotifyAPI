@@ -17,6 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediator();
+builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddServices();
 builder.Services.AddApiServices(builder.Configuration);
 builder.Services.AddMemoryCache();

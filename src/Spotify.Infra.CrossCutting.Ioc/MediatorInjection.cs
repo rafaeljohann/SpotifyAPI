@@ -1,3 +1,4 @@
+using System.Reflection;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,17 +8,19 @@ namespace Spotify.Infra.CrossCutting.Ioc
 {
     public static class MediatorInjection
     {
+        private static Assembly DomainAssembly => 
+            AppDomain.CurrentDomain.Load("Spotify.Domain");
         public static void AddMediator(this IServiceCollection services)
         {
-            const string applicationAssemblyName = "Futebol.Domain";
-            var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
+            // const string applicationAssemblyName = "../Spotify.Domain";
+            // var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
 
             AssemblyScanner
-                .FindValidatorsInAssembly(assembly)
+                .FindValidatorsInAssembly(DomainAssembly)
                 .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-            services.AddMediatR(assembly);
+            services.AddMediatR(DomainAssembly);
         }
     }
 }

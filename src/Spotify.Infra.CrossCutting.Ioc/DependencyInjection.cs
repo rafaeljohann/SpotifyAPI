@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Spotify.Infra.CrossCutting.Notifications;
 using Spotify.Infra.CrossCutting.Services.Auth;
@@ -10,6 +9,7 @@ namespace Spotify.Infra.CrossCutting.Ioc
     {
         public static void AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<ITokenProvider, TokenProvider>();
             services.AddScoped<ITokenService, TokenService>();
 

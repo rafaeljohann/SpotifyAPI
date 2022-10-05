@@ -2,7 +2,7 @@ namespace Spotify.Domain.ValueObjects
 {
     public class Musica
     {
-        public Guid Id { get; init; }
+        public string Id { get; init; }
         public string? TrackArtist { get; init; }
         public string? TrackName { get; init; }
         public int Popularity { get; init; }
@@ -23,7 +23,7 @@ namespace Spotify.Domain.ValueObjects
         // gênero da música
 
         public Musica(
-            Guid id, 
+            string id, 
             string? trackArtist, 
             string? trackName, 
             int popularity, 
