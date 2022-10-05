@@ -34,7 +34,7 @@ namespace Spotify.Infra.CrossCutting.Services.Auth
         public async Task<string> GetTokenAsync()
         {
             return await _cache.GetOrCreateValueAsync(
-                string.Format(TOKEN_AUTENTICACAO),
+                TOKEN_AUTENTICACAO,
                 () => CriarTokenAsync(),
                 new MemoryCacheEntryOptions
                 {
@@ -51,7 +51,7 @@ namespace Spotify.Infra.CrossCutting.Services.Auth
             if (result is null)
                 return default;
 
-            return result.AccessToken;
+            return result.Access_Token;
         }
 
         private TokenRequest CriarRequest()

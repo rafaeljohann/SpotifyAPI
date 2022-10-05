@@ -1,4 +1,3 @@
-using System.Reflection;
 using Spotify.CrossCutting.ValidationBehavior;
 using Spotify.Infra.CrossCutting.Ioc;
 using Spotify.Infra.CrossCutting.Notifications;
@@ -12,14 +11,13 @@ builder.Services.AddControllers(options =>
     options.Filters.Add<NotificationFilter>();
 });
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddMediator();
-builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddServices();
+builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddApiServices(builder.Configuration);
+builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
 

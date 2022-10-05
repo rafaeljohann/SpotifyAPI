@@ -12,7 +12,6 @@ namespace Spotify.Infra.CrossCutting.Ioc
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<ITokenProvider, TokenProvider>();
             services.AddScoped<ITokenService, TokenService>();
-
             services.AddScoped<INotificationContext, NotificationContext>();
         }
     }

@@ -24,6 +24,7 @@ namespace Spotify.CrossCutting.ValidationBehavior
                 if (failures.Count != 0)
                     throw new FluentValidation.ValidationException(failures);
             }
+                
             return await next();
         }
     }

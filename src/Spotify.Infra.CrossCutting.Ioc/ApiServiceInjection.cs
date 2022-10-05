@@ -1,7 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Spotify.Domain.Interfaces;
 using Spotify.Infra.CrossCutting.Services.Auth;
-using Spotify.Infra.ExternalServices.Spotify;
+using Spotify.Infra.ExternalServices.Spotify.Services;
 
 namespace Spotify.Infra.CrossCutting.Ioc
 {
@@ -12,9 +13,9 @@ namespace Spotify.Infra.CrossCutting.Ioc
             services.AddHttpContextAccessor();
             services.AddScoped<AutenticacaoMessageHandler>();
 
-            services.AddHttpClient<ITokenService, TokenService>(client => 
+            services.AddHttpClient<ISpotifyApiService, SpotifyApiService>(client => 
             {
-                var uri = configuration.GetValue<string>("AutenticacaoSettings:Endpoint");
+                var uri = configuration.GetValue<string>("SpotifyApiSettings:Endpoint");
                 client.BaseAddress = new Uri(uri);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.Timeout = TimeSpan.FromMinutes(3);

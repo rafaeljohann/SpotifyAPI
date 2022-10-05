@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Spotify.Infra.CrossCutting\Spotify.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\Spotify.Domain\Spotify.Domain.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

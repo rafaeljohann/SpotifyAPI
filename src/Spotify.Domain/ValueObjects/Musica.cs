@@ -59,5 +59,17 @@ namespace Spotify.Domain.ValueObjects
             Energy = energy;
             Danceability = danceability;
         }
+
+        public Musica(
+            string id,
+            bool @explicit,
+            string trackName,
+            int popularity)
+        {
+            Id = id;
+            Explicit = @explicit;
+            TrackName = trackName;
+            Popularity = popularity;
+        }
     }
 }
