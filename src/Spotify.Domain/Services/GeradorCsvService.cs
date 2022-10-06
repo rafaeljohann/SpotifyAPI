@@ -36,13 +36,16 @@ namespace Spotify.Domain.Services
                     {
                         foreach(var artist in track.Artists)
                         {
-                            artistsNames += artist.Name + " | ";
+                            artistsNames += artist?.Name + " | ";
 
                             if (genres.Equals(string.Empty))
                             {
-                                foreach (var genre in artist.Genres)
+                                if (artist?.Genres is not null) 
                                 {
-                                    genres += genre + " | ";
+                                    foreach (var genre in artist?.Genres)
+                                    {
+                                        genres += genre + " | ";
+                                    }
                                 }
                             }
                         }

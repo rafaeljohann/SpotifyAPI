@@ -22,6 +22,13 @@ namespace Spotify.Infra.CrossCutting.Ioc
                 configuration.Bind(nameof(SpotifyApiSettings), settings);
                 return settings;
             });
+
+            services.AddSingleton<SpotifyTopPlaylistsSettings>(p => 
+            {
+                var settings = new SpotifyTopPlaylistsSettings();
+                configuration.Bind(nameof(SpotifyTopPlaylistsSettings), settings);
+                return settings;
+            });
         }
     }
 }
