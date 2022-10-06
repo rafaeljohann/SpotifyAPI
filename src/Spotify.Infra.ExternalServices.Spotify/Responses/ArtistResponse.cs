@@ -4,6 +4,6 @@ namespace Spotify.Infra.ExternalServices.Spotify.Responses
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public ICollection<GenreResponse> Genres { get; set; }       
+        public ICollection<string> Genres { get; set; }       
     }
 }

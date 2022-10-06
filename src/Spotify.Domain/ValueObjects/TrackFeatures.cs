@@ -1,12 +1,8 @@
 namespace Spotify.Domain.ValueObjects
 {
-    public class Musica
+    public class TrackFeatures
     {
         public string Id { get; init; }
-        public string? TrackArtist { get; init; }
-        public string? TrackName { get; init; }
-        public int Popularity { get; init; }
-        public bool Explicit { get; init; }
         public decimal DurationMs { get; init; }
         public decimal Tempo { get; init; }
         public decimal Valence { get; init; }
@@ -20,14 +16,8 @@ namespace Spotify.Domain.ValueObjects
         public decimal Energy { get; init; }
         public decimal Danceability { get; init; }
 
-        // gênero da música
-
-        public Musica(
+        public TrackFeatures(
             string id, 
-            string? trackArtist, 
-            string? trackName, 
-            int popularity, 
-            bool @explicit, 
             decimal durationMs, 
             decimal tempo, 
             decimal valence, 
@@ -42,10 +32,6 @@ namespace Spotify.Domain.ValueObjects
             decimal danceability)
         {
             Id = id;
-            TrackArtist = trackArtist;
-            TrackName = trackName;
-            Popularity = popularity;
-            Explicit = @explicit;
             DurationMs = durationMs;
             Tempo = tempo;
             Valence = valence;
@@ -58,18 +44,6 @@ namespace Spotify.Domain.ValueObjects
             Key = key;
             Energy = energy;
             Danceability = danceability;
-        }
-
-        public Musica(
-            string id,
-            bool @explicit,
-            string trackName,
-            int popularity)
-        {
-            Id = id;
-            Explicit = @explicit;
-            TrackName = trackName;
-            Popularity = popularity;
         }
     }
 }

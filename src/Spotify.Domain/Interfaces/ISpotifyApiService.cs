@@ -4,6 +4,9 @@ namespace Spotify.Domain.Interfaces
 {
     public interface ISpotifyApiService
     { 
-        Task<IEnumerable<Musica>> ObterMusicasPlaylistPorId(string id);
+        Task<IEnumerable<Track>> ObterMusicasPlaylistPorId(string id);
+        Task<Album> ObterDadosAlbumPorId(string id);
+        Task<Artist> ObterDadosArtistaPorId(string id);
+        Task<TrackFeatures> ObterTrackFeaturesPorId(string id);
     }
 }

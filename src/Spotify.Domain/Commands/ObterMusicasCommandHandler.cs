@@ -1,5 +1,6 @@
 using MediatR;
 using Spotify.Domain.Interfaces;
+using Spotify.Domain.ValueObjects;
 using Spotify.Infra.CrossCutting.Notifications;
 
 namespace Spotify.Domain.Commands
@@ -22,9 +23,29 @@ namespace Spotify.Domain.Commands
         {
             // Obter playlists de acordo com settings.
             var musicasPlaylist = await _spotifyApiService.ObterMusicasPlaylistPorId("37i9dQZF1DXe2bobNYDtW8");
-            // Obtém análise da música e os dados necessários.
+            
+            if (musicasPlaylist is null)
+                return default;
 
-            // retorna lista das músicas em CSV.
+            foreach (var musica in musicasPlaylist)
+            {
+                var listaArtistas = new List<Artist>();
+
+                var dadosAlbum = await _spotifyApiService.ObterDadosAlbumPorId(musica.Album?.Id);
+                musica.AtribuirAlbum(dadosAlbum);
+
+                foreach (var artista in musica.Artists)
+                {
+                    var dadosArtista = await _spotifyApiService
+                        .ObterDadosArtistaPorId(artista.Id);
+
+                    listaArtistas.Add(dadosArtista);
+                }
+                musica.AtribuirArtistas(listaArtistas);
+
+                var dadosMusica = await _spotifyApiService.ObterTrackFeaturesPorId(musica.Id);
+                musica.AtribuirTrackFeatures(dadosMusica);
+            }
 
             return Unit.Value;
         }
