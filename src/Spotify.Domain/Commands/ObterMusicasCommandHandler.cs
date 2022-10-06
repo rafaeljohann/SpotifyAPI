@@ -6,19 +6,22 @@ using Spotify.Infra.CrossCutting.Notifications;
 namespace Spotify.Domain.Commands
 {
     public class ObterMusicasCommandHandler
-        : IRequestHandler<ObterMusicasCommand>
+        : IRequestHandler<ObterMusicasCommand, byte[]>
     {
         private readonly ISpotifyApiService _spotifyApiService;
         private readonly INotificationContext _notificationContext;
+        private readonly IGeradorCsvService _geradorCsvService;
         public ObterMusicasCommandHandler(
             ISpotifyApiService spotifyApiService,
-            INotificationContext notificationContext)
+            INotificationContext notificationContext,
+            IGeradorCsvService geradorCsvService)
         {
             _spotifyApiService = spotifyApiService;
             _notificationContext = notificationContext;
+            _geradorCsvService = geradorCsvService;
         }
 
-        public async Task<Unit> Handle(
+        public async Task<byte[]> Handle(
             ObterMusicasCommand request, CancellationToken cancellationToken)
         {
             // Obter playlists de acordo com settings.
@@ -47,7 +50,9 @@ namespace Spotify.Domain.Commands
                 musica.AtribuirTrackFeatures(dadosMusica);
             }
 
-            return Unit.Value;
+            var relatorioCsv = await _geradorCsvService.Gerar(musicasPlaylist);
+
+            return relatorioCsv;
         }
     }
 }

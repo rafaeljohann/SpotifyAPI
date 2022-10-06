@@ -2,6 +2,6 @@ using MediatR;
 
 namespace Spotify.Domain.Commands
 {
-    public class ObterMusicasCommand : IRequest
+    public class ObterMusicasCommand : IRequest<byte[]>
     { }
 }

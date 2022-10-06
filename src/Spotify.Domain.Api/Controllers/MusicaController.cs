@@ -15,10 +15,17 @@ public class MusicaController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet(Name = "ObterMusicasMaisPopulares")]
+    [HttpGet("ObterMusicas")]
     public async Task<IActionResult> ObterMusicasMaisPopulares()
     {
         var result = await _mediator.Send(new ObterMusicasCommand());
-        return Ok();
+
+        if (result is null)
+            return Ok();
+        
+        Response.Headers.Add("Content-Disposition",
+            "attachment;filename=RelatorioMusicasSpotify.csv");
+        
+        return File(result, "text/csv");
     }
 }

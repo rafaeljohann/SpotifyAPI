@@ -13,6 +13,7 @@ namespace Spotify.Infra.ExternalServices.Spotify.Mappers
             return new Album(
                 album.Id,
                 album.Name,
+                album.Release_Date,
                 GenreMap.Map(album.Genres));
         } 
     }
