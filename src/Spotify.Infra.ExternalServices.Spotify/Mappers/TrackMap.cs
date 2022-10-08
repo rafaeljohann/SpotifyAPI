@@ -20,6 +20,21 @@ namespace Spotify.Infra.ExternalServices.Spotify.Mappers
                     TrackFeaturesMap.Map(track.Track.TrackFeatures));
         }
 
+        public static Track Map(TrackResponse track)
+        {
+            if (track is default(TrackResponse))
+                return default;
+
+            return new Track(
+                    track.Id,
+                    track.Explicit,
+                    track.Name,
+                    track.Popularity,
+                    AlbumMap.Map(track.Album),
+                    ArtistMap.Map(track.Artists),
+                    TrackFeaturesMap.Map(track.TrackFeatures));
+        }
+
         public static ICollection<Track> Map(ICollection<ItemResponse> track)
             => track?.Select(x => Map(x)).ToList() ?? new List<Track>();
     }

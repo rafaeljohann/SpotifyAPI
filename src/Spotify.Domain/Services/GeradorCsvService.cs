@@ -38,7 +38,7 @@ namespace Spotify.Domain.Services
                         {
                             artistsNames += artist?.Name + " | ";
 
-                            if (genres.Equals(string.Empty))
+                            if (genres is not null && genres.Equals(string.Empty))
                             {
                                 if (artist?.Genres is not null) 
                                 {

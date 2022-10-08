@@ -15,5 +15,15 @@ namespace Spotify.Infra.CrossCutting.Settings
         public string TopTracksOf2012 { get; set; }  
         public string TopTracksOf2011 { get; set; }
         public string TopTracksOf2010 { get; set; }   
+        public string TopTracksOf2009 { get; set; }  
+        public string TopTracksOf2008 { get; set; }  
+        public string TopTracksOf2007 { get; set; }  
+        public string TopTracksOf2006 { get; set; }  
+        public string TopTracksOf2005 { get; set; }  
+        public string TopTracksOf2004 { get; set; }  
+        public string TopTracksOf2003 { get; set; }  
+        public string TopTracksOf2002 { get; set; }  
+        public string TopTracksOf2001 { get; set; }
+        public string TopTracksOf2000 { get; set; }  
     }
 }

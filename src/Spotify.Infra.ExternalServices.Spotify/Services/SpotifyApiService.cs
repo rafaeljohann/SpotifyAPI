@@ -71,5 +71,17 @@ namespace Spotify.Infra.ExternalServices.Spotify.Services
             var response = await request.Content.ReadAsJsonAsync<TrackFeaturesResponse>();
             return TrackFeaturesMap.Map(response);
         }
+
+        public async Task<Track> ObterMusicaPorId(string id)
+        {
+            var rota = string.Format(_settings.Rotas.ObterMusicaPorId, id);
+            var request = await _httpClient.GetAsync(rota);
+
+            if (!request.IsSuccessStatusCode)
+                return default;
+
+            var response = await request.Content.ReadAsJsonAsync<TrackResponse>();
+            return TrackMap.Map(response);
+        }
     }
 }

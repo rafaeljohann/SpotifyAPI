@@ -14,7 +14,7 @@ namespace Spotify.Domain.Commands
         private readonly INotificationContext _notificationContext;
         private readonly IGeradorCsvService _geradorCsvService;
         private readonly SpotifyTopPlaylistsSettings _spotifyTopPlaylistsSettings;
-        private const int LIMITE_MAXIMO_BUSCA = 1000;
+        private List<Track> _musicasExportacao;
 
         public ObterMusicasCommandHandler(
             ISpotifyApiService spotifyApiService,
@@ -26,59 +26,79 @@ namespace Spotify.Domain.Commands
             _notificationContext = notificationContext;
             _geradorCsvService = geradorCsvService;
             _spotifyTopPlaylistsSettings = spotifyTopPlaylistsSettings;
+            _musicasExportacao = new List<Track>();
         }
 
         public async Task<byte[]> Handle(
             ObterMusicasCommand request, CancellationToken cancellationToken)
         {
-            var relatorioCsv = default(byte[]);
-            int quantidadeMusicasInseridas = 0;
+            if (request.IdMusicasExistentes is not null)
+                await InserirDadosMusicasExistentes(request.IdMusicasExistentes);
+
+           await BuscarMusicasPorPlaylists();
+
+            var relatorioCsv = await _geradorCsvService.Gerar(_musicasExportacao);
+            return relatorioCsv;
+        }
+
+        private async Task BuscarMusicasPorPlaylists()
+        {
             IList<PropertyInfo> properties = typeof(SpotifyTopPlaylistsSettings).GetProperties().ToList();
-            var musicasExportacao = new List<Track>();
 
             foreach (PropertyInfo property in properties)
             {
-                if (quantidadeMusicasInseridas >= LIMITE_MAXIMO_BUSCA)
-                    break;
-
                 var musicasPlaylist = await _spotifyApiService
                     .ObterMusicasPlaylistPorId(property
                         .GetValue(_spotifyTopPlaylistsSettings, null)
                         .ToString());
                 
                 if (musicasPlaylist is null)
-                    return default;
+                    return;
 
                 foreach (var musica in musicasPlaylist)
                 {
-                    var listaArtistas = new List<Artist>();
-
-                    var dadosAlbum = await _spotifyApiService.ObterDadosAlbumPorId(musica.Album?.Id);
-                    musica.AtribuirAlbum(dadosAlbum);
-
-                    foreach (var artista in musica.Artists)
-                    {
-                        var dadosArtista = await _spotifyApiService
-                            .ObterDadosArtistaPorId(artista.Id);
-
-                        listaArtistas.Add(dadosArtista);
-                    }
-                    musica.AtribuirArtistas(listaArtistas);
-
-                    var dadosMusica = await _spotifyApiService.ObterTrackFeaturesPorId(musica.Id);
-                    musica.AtribuirTrackFeatures(dadosMusica);
-
-                    musicasExportacao.Add(musica);
-
-                    quantidadeMusicasInseridas += 1;
-
-                    if (quantidadeMusicasInseridas >= LIMITE_MAXIMO_BUSCA)
-                        break;
+                    await AtribuirDadosMusica(musica);
+                    _musicasExportacao.Add(musica);
                 }
             }
-
-            relatorioCsv = await _geradorCsvService.Gerar(musicasExportacao);
-            return relatorioCsv;
         }
+
+        private async Task InserirDadosMusicasExistentes(
+            IEnumerable<string> idMusicasExistentes)
+        {
+            foreach (var id in idMusicasExistentes)
+            {
+                var musica = await _spotifyApiService.ObterMusicaPorId(id);
+
+                if (musica is null)
+                    continue;
+
+                await AtribuirDadosMusica(musica);
+                _musicasExportacao.Add(musica);
+            }
+        }
+
+        public async Task AtribuirDadosMusica(Track track)
+        {
+            if (track is null)
+                return;
+
+            var listaArtistas = new List<Artist>();
+
+            var dadosAlbum = await _spotifyApiService.ObterDadosAlbumPorId(track?.Album?.Id);
+            track.AtribuirAlbum(dadosAlbum);
+
+            foreach (var artista in track.Artists)
+            {
+                var dadosArtista = await _spotifyApiService
+                    .ObterDadosArtistaPorId(artista.Id);
+
+                listaArtistas.Add(dadosArtista);
+            }
+            track.AtribuirArtistas(listaArtistas);
+
+            var dadosMusica = await _spotifyApiService.ObterTrackFeaturesPorId(track.Id);
+            track.AtribuirTrackFeatures(dadosMusica);
+        } 
     }
 }

@@ -8,5 +8,6 @@ namespace Spotify.Domain.Interfaces
         Task<Album> ObterDadosAlbumPorId(string id);
         Task<Artist> ObterDadosArtistaPorId(string id);
         Task<TrackFeatures> ObterTrackFeaturesPorId(string id);
+        Task<Track> ObterMusicaPorId(string id);
     }
 }

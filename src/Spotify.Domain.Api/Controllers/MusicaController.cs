@@ -15,10 +15,11 @@ public class MusicaController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("ObterMusicas")]
-    public async Task<IActionResult> ObterMusicasMaisPopulares()
+    [HttpPost("ObterMusicas")]
+    public async Task<IActionResult> ObterMusicasMaisPopulares(
+        [FromBody] ObterMusicasCommand obterMusicasCommand)
     {
-        var result = await _mediator.Send(new ObterMusicasCommand());
+        var result = await _mediator.Send(obterMusicasCommand);
 
         if (result is null)
             return Ok();
